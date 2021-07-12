@@ -8,6 +8,29 @@
   http://localhost:9999
 
 
+### Formato
+
+O formato esperado de um produto é o seguinte:
+
+```javascript
+  {
+    "id": intanger,
+    "name": "string",
+    "description": "string",
+    "price": 59.99
+  }
+```
+Durante a criação e alteração, os campos name, description e price são obrigatórios. Em relação ao campo price o valor deve ser positivo.
+
+Retorno em caso de Not Found:
+```javascript
+  {
+    "id": "No such product found with id:" + id buscado,
+    "erro_code": integer
+  }
+```
+
+
 ### Endpoints
 
 São disponibilizados os seguintes endpoints para operação do catálogo de produtos:
@@ -23,21 +46,8 @@ São disponibilizados os seguintes endpoints para operação do catálogo de pro
 | DELETE      |  /products/{id}   |   Deleção de um produto       |
 
 
-* **Method:**
-  
-  Os métodos disponíveis e seus respectivos <strong>endpoins</strong> são:
-
-  `GET`| `POST` | `DELETE` | `PUT`
       
 #### GET /products
-
-Retorno em caso de Not Found:
-```javascript
-  {
-    "id": "No such product found with id:" + id buscado,
-    "erro_code": integer
-  }
-```
 
 Nesse endpoint a API retorna a lista atual de todos os produtos com HTTP 200. Se não existir produtos, retornar uma lista vazia.
 
@@ -64,9 +74,73 @@ Retorno vazio:
 []
 ```
 
+#### POST /products
+
+Esse endpoint cria um novo produto na base de dados, ao receber o JSON do produto o mesmo é validado em acordo com as regras da sessão **Formato**, e, caso esteja válido, persistido na base de dados e retornado com o *id* gerado e HTTP 201.
+
+Entrada:
+```javascript
+  {
+    "name": "nome",
+    "description": "descrição",
+    "price": <preco>
+  }
+```
+
+Retorno:
+```javascript
+  {
+    "id": "id gerado",
+    "name": "nome",
+    "description": "descriÃ§Ã£o",
+    "price": <preco>
+  }
+```
+Em caso de algum erro de validação, a API  retorna um HTTP 400 indicando um Bad Request e uma menssagem com o erro ocorrido:
+
+```javascript
+  {
+    "message": "message",
+    "status": integer
+  }
+```
+
+#### PUT /products/\{id\}
+
+Esse endpoint atualiza um produto baseado no {id} passado via path param. Antes de alterar, é consultada a base de dados pelo *id*, se o produto não for localizado então é retornado um HTTP 404 ao cliente com o Not Found. Se localizar o produto, então os campos *name, description e price* são atualizados conforme recebidos no body da requisição.
+
+Entrada:
+```javascript
+  {
+    "name": "nome",
+    "description": "descrição",
+    "price": <preco>
+  }
+```
+
+Retorno:
+```javascript
+  {
+    "id": "id atualizado",
+    "name": "nome",
+    "description": "descrição",
+    "price": <preco>
+  }
+```
+
+As mesmas regras de validaçãi do POST /products são executadas para garantir consistência, e, se ocorrer erro retornar no mesmo formato:
+
+```javascript
+  {
+    "message": "message",
+    "status": integer
+  }
+```
+
+
 #### GET /products/\{id\}
 
-Esse endpoint retorna o product localizado na base de dados com um HTTP 200. Em caso de não localização do produto, a API deve retornar um HTTP 404 indicando que o recurso não foi localizado e um erro de Not Found.
+Esse endpoint retorna o product localizado na base de dados com um HTTP 200. Em caso de não localização do produto, a API retorna um HTTP 404 indicando que o recurso não foi localizado e um erro de Not Found mencionado no início.
 
 Retorno:
 ```javascript
@@ -77,46 +151,55 @@ Retorno:
     "price": <preco>
   }
 ```
-  
-*  **URL Params**
 
-   <_If URL params exist, specify them in accordance with name mentioned in URL section. Separate into optional and required. Document data constraints._> 
+#### GET /products/search
 
-   **Required:**
- 
-   `id=[integer]`
+Nesse endpoint a API retorna a lista atual de todos os produtos filtrados de acordo com query parameters passados na URL.
 
-   **Optional:**
- 
-   `photo_id=[alphanumeric]`
+Os query parameters aceitos são: q, min_price e max_price.
 
-* **Data Params**
+**Importante: nenhum deles é obrigatório na requisição**
 
-  <_If making a post request, what should the body payload look like? URL Params rules apply here too._>
+Onde:
 
-* **Success Response:**
-  
-  <_What should the status code be on success and is there any returned data? This is useful when people need to to know what their callbacks should expect!_>
+| Query param |  Ação de filtro     
+|-------------|:---------------------------------------------------------------:|
+| q           |   bate o valor contra os campos *name* e *description*           |
+| min_price   |   bate o valor ">=" contra o campo *price*                |
+| max_price   |   bate o valor "<=" contra o campo *price*                |
 
-  * **Code:** 200 <br />
-    **Content:** `{ id : 12 }`
- 
-* **Error Response:**
+**Exemplo: /products/search?min_price=10.5&max_price=50&q=superget**
 
-  <_Most endpoints will have many ways they can fail. From unauthorized access, to wrongful parameters etc. All of those should be liste d here. It might seem repetitive, but it helps prevent assumptions from being made where they should be._>
+Retorno com produtos filtrados/buscados:
+```javascript
+[
+  {
+    "id": "id produto 1",
+    "name": "nome",
+    "description": "descrição",
+    "price": <preco>
+  },
+  {
+    "id": "id produto 2",
+    "name": "nome",
+    "description": "descrição",
+    "price": <preco>
+  }
+]
+```
 
-  * **Code:** 401 UNAUTHORIZED <br />
-    **Content:** `{ error : "Log in" }`
+Retorno vazio:
+```javascript
+[]
+```
 
-  OR
+#### DELETE /products/\{id\}
 
-  * **Code:** 422 UNPROCESSABLE ENTRY <br />
-    **Content:** `{ error : "Email Invalid" }`
+Esse endpoint deleta um registro de produto na base de dados. Caso encontre o produto filtrando pelo *id* então deleta e retorna um HTTP 200 com uma mensagem. Se o *id* passado não foi localizado deve retorna um HTTP 404 com o erro Not Fount.
 
-* **Sample Call:**
-
-  <_Just a sample call to your endpoint in a runnable format ($.ajax call or a curl request) - this makes life easier and more predictable._> 
-
-* **Notes:**
-
-  <_This is where all uncertainties, commentary, discussion etc. can go. I recommend timestamping and identifying oneself when leaving comments here._> 
+Retorno:
+```javascript
+  {
+    "deleted": true
+  }
+```
