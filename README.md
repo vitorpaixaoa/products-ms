@@ -9,9 +9,10 @@
 
 * **Method:**
   
-  Os métodos disponíveis são:
+  Os métodos disponíveis e seus respectivos <strong>endpoins</strong> são:
 
-  `GET`|  
+  `GET`|
+      Nos método
     
   `POST` | 
   
