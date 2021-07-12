@@ -12,7 +12,9 @@
   Os métodos disponíveis e seus respectivos <strong>endpoins</strong> são:
 
   `GET`|
-      Nos método
+      
+      "/products" -> Retorna uma lista com todos os produtos disponíveis ou um array vazio caso não tenha nenhum produto.
+            
     
   `POST` | 
   
