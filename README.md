@@ -15,7 +15,7 @@
       
 #### GET /products
 
-Nesse endpoint a API deve retornar a lista atual de todos os produtos com HTTP 200. Se nÃ£o existir produtos, retornar uma lista vazia.
+Nesse endpoint a API retorna a lista atual de todos os produtos com HTTP 200. Se não existir produtos, retornar uma lista vazia.
 
 Retorno com produtos:
 ```javascript
@@ -23,13 +23,13 @@ Retorno com produtos:
   {
     "id": "id produto 1",
     "name": "nome",
-    "description": "descriÃ§Ã£o",
+    "description": "descrição",
     "price": <preco>
   },
   {
     "id": "id produto 2",
     "name": "nome",
-    "description": "descriÃ§Ã£o",
+    "description": "descrição",
     "price": <preco>
   }
 ]
@@ -39,6 +39,29 @@ Retorno vazio:
 ```javascript
 []
 ```
+
+#### GET /products/\{id\}
+
+Esse endpoint retorna o product localizado na base de dados com um HTTP 200. Em caso de não localização do produto, a API deve retornar um HTTP 404 indicando que o recurso não foi localizado e um erro de Not Found.
+
+Retorno:
+```javascript
+  {
+    "id": "id buscado",
+    "name": "nome",
+    "description": "descriÃ§Ã£o",
+    "price": <preco>
+  }
+```
+
+Retorno em caso de Not Found:
+```javascript
+  {
+    "id": "No such product found with id:" + id buscado,
+    "erro_code": integer
+  }
+```
+
 
   
 *  **URL Params**
