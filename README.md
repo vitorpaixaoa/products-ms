@@ -11,11 +11,8 @@
   
   Os métodos disponíveis são:
 
-  `GET`  
-      
-      Nos métodos `GET temos os seguintes <strong>endpoints</strong>: 
-      
-  
+  `GET`|  
+    
   `POST` | 
   
   `DELETE` | 
