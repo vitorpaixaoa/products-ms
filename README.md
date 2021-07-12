@@ -4,13 +4,23 @@
 
 * **URL**
 
+  O serviço, como previamente definido roda na porta :9999 sendo assim ficando com o url base: 
   http://localhost:9999
 
 * **Method:**
   
-  <_The request type_>
+  Os métodos disponíveis são:
 
-  `GET` | `POST` | `DELETE` | `PUT`
+  `GET` | 
+      
+      Nos métodos `GET` temos os seguintes <strong>endpoints</strong>: 
+      
+  
+  `POST` | 
+  
+  `DELETE` | 
+  
+  `PUT`
   
 *  **URL Params**
 
