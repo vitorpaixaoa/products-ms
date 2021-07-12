@@ -12,10 +12,10 @@
   Os métodos disponíveis e seus respectivos <strong>endpoins</strong> são:
 
   `GET`|
-      
       "/products" -> Retorna uma lista com todos os produtos disponíveis ou um array vazio caso não tenha nenhum produto, coforme estabelecido.
-            <img src="https://github.com/vitorpaixaoa/React-CRUD-frontend/blob/master/public/project-imgs/Lista-de-Clientes.png" alt="Clientes" />
+      <img src="https://github.com/vitorpaixaoa/React-CRUD-frontend/blob/master/public/project-imgs/Lista-de-Clientes.png" alt="Clientes" />
     
+            
   `POST` | 
   
   `DELETE` | 
