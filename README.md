@@ -5,7 +5,10 @@
 
 ### EXECUÇÃO
 Para rodar o programa, basta inicia-lo como uma aplicação SPRING.
-O banco de dados está configurado para rodar em um container docker, que foi definido no arquivo  ```stack.yml```
+O banco de dados ```MySQL 8``` está configurado para rodar em um container docker, que foi definido no arquivo  ```stack.yml``` então para subir o container basta ter a docker instalada e rodar o comando:
+
+```docker-compose -f stack.yml up```
+
 
 
 ### URL
