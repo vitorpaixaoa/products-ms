@@ -13,7 +13,7 @@
 
   `GET` | 
       
-      Nos métodos `GET` temos os seguintes <strong>endpoints</strong>: 
+      Nos métodos GET temos os seguintes <strong>endpoints</strong>: 
       
   
   `POST` | 
