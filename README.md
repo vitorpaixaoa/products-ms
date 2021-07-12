@@ -7,6 +7,22 @@
   O serviço, como previamente definido roda na porta :9999 sendo assim ficando com o url base: 
   http://localhost:9999
 
+
+### Endpoints
+
+São disponibilizados os seguintes endpoints para operação do catálogo de produtos:
+
+
+| Verbo HTTP  |  Resource path    |          descrição           |
+|-------------|:-----------------:|------------------------------:|
+| POST        |  /products        |   Criação de um produto       |
+| PUT         |  /products/{id}   |   Atualização de um produto   |
+| GET         |  /products/{id}   |   Busca de um produto por ID  |
+| GET         |  /products        |   Lista de produtos           |
+| GET         |  /products/search |   Lista de produtos filtrados |
+| DELETE      |  /products/{id}   |   Deleção de um produto       |
+
+
 * **Method:**
   
   Os métodos disponíveis e seus respectivos <strong>endpoins</strong> são:
@@ -14,6 +30,14 @@
   `GET`| `POST` | `DELETE` | `PUT`
       
 #### GET /products
+
+Retorno em caso de Not Found:
+```javascript
+  {
+    "id": "No such product found with id:" + id buscado,
+    "erro_code": integer
+  }
+```
 
 Nesse endpoint a API retorna a lista atual de todos os produtos com HTTP 200. Se não existir produtos, retornar uma lista vazia.
 
@@ -49,20 +73,10 @@ Retorno:
   {
     "id": "id buscado",
     "name": "nome",
-    "description": "descriÃ§Ã£o",
+    "description": "descrição",
     "price": <preco>
   }
 ```
-
-Retorno em caso de Not Found:
-```javascript
-  {
-    "id": "No such product found with id:" + id buscado,
-    "erro_code": integer
-  }
-```
-
-
   
 *  **URL Params**
 
