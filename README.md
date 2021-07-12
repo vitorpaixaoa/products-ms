@@ -13,17 +13,33 @@
 
   `GET`| `POST` | `DELETE` | `PUT`
       
-     
-     `GET` -> "/products" Retorna uma lista com todos os produtos disponíveis ou um array vazio caso não tenha nenhum produto, coforme estabelecido.
-     <img src="https://github.com/vitorpaixaoa/React-CRUD-frontend/blob/master/public/project-imgs/Lista-de-Clientes.png" alt="Clientes" />
-     
-     
-    
-     
-     
-    
-            
- 
+#### GET /products
+
+Nesse endpoint a API deve retornar a lista atual de todos os produtos com HTTP 200. Se nÃ£o existir produtos, retornar uma lista vazia.
+
+Retorno com produtos:
+```javascript
+[
+  {
+    "id": "id produto 1",
+    "name": "nome",
+    "description": "descriÃ§Ã£o",
+    "price": <preco>
+  },
+  {
+    "id": "id produto 2",
+    "name": "nome",
+    "description": "descriÃ§Ã£o",
+    "price": <preco>
+  }
+]
+```
+
+Retorno vazio:
+```javascript
+[]
+```
+
   
 *  **URL Params**
 
