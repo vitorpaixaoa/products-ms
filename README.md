@@ -1,10 +1,10 @@
-**Title**
+**Product-ms**
 ----
-  <_Additional information about your API call. Try to use verbs that match both request type (fetching vs modifying) and plurality (one vs multiple)._>
+  Este é um microservice desenvolvido para o desafio da CompassoUOL, onde é possível criar, alterar, visualizar e excluir um determinado produto, além de visualizar a lista de produtos atuais disponíveis. Também deve ser possível realizar a busca de produtos filtrando por name, description e price.
 
 * **URL**
 
-  <_The URL Structure (path only, no root url)_>
+  http://localhost:9999
 
 * **Method:**
   
