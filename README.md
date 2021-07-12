@@ -2,7 +2,13 @@
 ----
   Este é um microservice desenvolvido para o desafio da CompassoUOL, onde é possível criar, alterar, visualizar e excluir um determinado produto, além de visualizar a lista de produtos atuais disponíveis. Também deve ser possível realizar a busca de produtos filtrando por name, description e price.
 
-* **URL**
+
+### EXECUÇÃO
+Para rodar o programa, basta inicia-lo como uma aplicação SPRING.
+O banco de dados está configurado para rodar em um container docker, que foi definido no arquivo  ```stack.yml```
+
+
+### URL
 
   O serviço, como previamente definido roda na porta :9999 sendo assim ficando com o url base: 
   http://localhost:9999
